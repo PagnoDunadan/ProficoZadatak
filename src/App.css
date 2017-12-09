@@ -1,28 +1,74 @@
-.App {
-  text-align: center;
+#appWrapper {
+  height: 100%;   
+  overflow: hidden;  /*makes the body non-scrollable (we will add scrolling to the sidebar and main content containers)*/
+  margin: 0px;  /*removes default style*/
+  display: flex;  /*enables flex content for its children*/
+  box-sizing: border-box;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.column {
+  height: 100%;  /*allows both columns to span the full height of the browser window*/
+  display: flex;
+  flex-direction: column;  /*places the left and right headers above the bottom content*/
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+#left {
+  width: 150px;
+  flex-shrink: 0;  /*makes sure that content is not cut off in a smaller browser window*/
 }
 
-.App-title {
-  font-size: 1.5em;
+#right {
+  width: 100%;
 }
 
-.App-intro {
-  font-size: large;
+.top-left {
+  flex-shrink: 0;
+  background-color: rgb(1, 1, 1);
+  height: 60px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.top-right {
+  flex-shrink: 0;
+  display: inline-flex;
+  background-color: rgb(72, 84, 110);
+  height: 60px;
+}
+
+.bottom-left {
+  flex-shrink: 0;
+  background-color: rgb(45, 45, 45);
+}
+
+.bottom-right {
+  background-color: rgb(230, 229, 234);
+}
+
+.bottom {
+  flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
+  overflow-y: auto;  /*adds scroll to this container*/
+  height: 100%;
+}
+
+#logo {
+  width: 60px;
+  height: 60px;
+  vertical-align: middle;
+}
+
+#title {
+  color: lightgrey;
+  vertical-align: middle;
+  cursor: default;
+}
+
+#navigation a {
+  display: block;
+  color: rgb(91, 91, 91);
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+#navigation a:hover {
+  background-color: rgb(72, 84, 110);
+  color: rgb(195, 203, 220);
 }
