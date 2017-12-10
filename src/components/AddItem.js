@@ -5,11 +5,11 @@ class AddItem extends Component {
   constructor() {
     super();
     this.state = {
-      name: '',
-      category: '',
-      status: '',
-      manufacturer: '',
-      location: '',
+      name: 'Big screen TV',
+      category: 'Tech',
+      status: 'Broken',
+      manufacturer: 'LG',
+      location: '204',
       showModal: false,
     };
   }
@@ -18,11 +18,11 @@ class AddItem extends Component {
   }
   handleCancel() {
     this.setState({
-      name: '',
-      category: '',
-      status: '',
-      manufacturer: '',
-      location: '',
+      name: 'Big screen TV',
+      category: 'Tech',
+      status: 'Broken',
+      manufacturer: 'LG',
+      location: '204',
       showModal: false
     })
   }

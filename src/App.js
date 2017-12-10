@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Content from './components/Content.js';
+import Inventory from './components/Inventory.js';
 
 class App extends Component {
   render() {
@@ -14,6 +14,7 @@ class App extends Component {
             </div>
             <div id="navigation" className="bottom-left bottom">
               <a href="/">Home</a>
+              <a href="/" className="selected">Inventory</a>
               <a href="/">News</a>
               <a href="/">Contact</a>
               <a href="/">About</a>
@@ -25,7 +26,7 @@ class App extends Component {
             </div>
             <div className="bottom-right bottom">
               
-              <Content />
+              <Inventory />
               
             </div>
         </div>

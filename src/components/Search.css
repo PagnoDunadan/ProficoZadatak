@@ -4,6 +4,7 @@
 
 #searchBox {
     width: calc(100% - 118px);
+    min-width: 124px;
     margin: 20px;
     padding: 6px 38px;
     font-size: 100%;

@@ -11,6 +11,21 @@
     user-select: none;
 }
 
+@media (max-width: 800px) {
+    #addItemButton {
+        right: 10px;
+        bottom: 10px;
+    }
+}
+
+@media (min-width: 801px) {
+    #addItemButton {
+        right: 40px;
+        bottom: 40px;
+    }
+}
+
+
 #addItemButton:active {
     color: black;
     border: 2px solid darkgray;

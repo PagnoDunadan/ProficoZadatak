@@ -72,3 +72,8 @@
   background-color: rgb(72, 84, 110);
   color: rgb(195, 203, 220);
 }
+
+#navigation .selected {
+  background-color: rgb(72, 84, 110);
+  color: rgb(195, 203, 220);
+}

@@ -6,19 +6,42 @@
     margin-left: 20px;
     margin-bottom: 20px;
     float: left;
+    background-color: white;
 }
 
 .itemCard:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    cursor: pointer;
 }
 
-.itemImage {
+.cardItemImage {
     border-radius: 5px 5px 0 0;
     width: 100%;
 }
 
-.itemContainer {
-    padding: 2px 16px;
+.cardItemContent {
+    padding: 10px 16px 4px 16px;
+}
+
+.cardItemName {
+    overflow: hidden;
+    margin: 0;
+}
+
+.cardItemStatus {
+    font-size: 80%;
+    margin: 4px 0 0 0;
+}
+
+.broken {
+    color: crimson;
+}
+
+.cardItemLocation {
+    font-size: 80%;
+    text-align: center;
+    color: rgb(143, 143, 143);
+    margin: 16px 0 4px 0;
 }
 
 .clearfix::after {

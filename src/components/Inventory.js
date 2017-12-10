@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Content.css';
+import './Inventory.css';
 import store from '../redux/Redux.js';
 import Search from './Search.js';
 import ItemsList from './ItemsList.js';
@@ -33,7 +33,7 @@ const addItem = (name, category, status, manufacturer, location) => {
   });
 };
 
-class Content extends Component {
+class Inventory extends Component {
   constructor() {
     super();
     this.state = { items: [] };
@@ -42,7 +42,9 @@ class Content extends Component {
     store.subscribe(() => {
       this.setState({
         items: store.getState().items.filter(
-          item => item.name.includes(store.getState().searchString)
+          item => item.name.toLowerCase().includes(
+            store.getState().searchString.toLowerCase()
+          )
         )
       });
     });
@@ -58,4 +60,4 @@ class Content extends Component {
   }
 }
 
-export default Content;
+export default Inventory;
