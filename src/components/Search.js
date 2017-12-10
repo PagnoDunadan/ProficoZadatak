@@ -16,6 +16,7 @@ class Search extends Component {
         <input id="searchBox" type="text" placeholder="Search"
         value={this.state.searchString}
         onChange={(e) => this.updateSearchString(e)} />
+        <i className="fa fa-search" aria-hidden="true"></i>
       </div>
     );
   }

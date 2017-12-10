@@ -3,9 +3,33 @@
 }
 
 #searchBox {
-    width: calc(100% - 40px);
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
+    width: calc(100% - 118px);
+    margin: 20px;
+    padding: 6px 38px;
+    font-size: 100%;
+    line-height: 2;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+}
+
+#searchBox:focus {
+    outline: none;
+    border: 1px solid rgb(141, 178, 236);
+    box-shadow: 0px 0px 5px rgba(141, 178, 236, 1);
+}
+
+#searchBox:focus + .fa-search {
+    color: black;
+}
+
+#searchBox:not(:placeholder-shown) + .fa-search {
+    color: black;
+}
+
+.fa-search {
+    color: grey;
+    position: absolute;
+    left: 32px;
+    top: 32px;
+    font-size: 20px;
 }
