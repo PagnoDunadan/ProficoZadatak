@@ -53,15 +53,6 @@ class AddItem extends Component {
   }
   render() {
     return (
-      // <i id="addItemButton" className="fa fa-plus"
-      // aria-hidden="true"
-      // onClick={() => this.props.addItem(
-      //     'Big screen TV',
-      //     'Basic Inventory',
-      //     'Broken',
-      //     'LG',
-      //     'Room 204'
-      // )}></i>
       <div>
         <i id="addItemButton" className="fa fa-plus"
         aria-hidden="true"

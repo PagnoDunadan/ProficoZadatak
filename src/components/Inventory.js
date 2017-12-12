@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Inventory.css';
-import store from '../redux/Redux.js';
+import store from '../redux/Store.js';
 import Search from './Search.js';
 import ItemsList from './ItemsList.js';
 import AddItem from './AddItem.js';
@@ -13,13 +13,6 @@ const setSearchString = (searchString) => {
     searchString
   });
 };
-
-// const setVisibilityFilter = (filter) => {
-//   store.dispatch({
-//     type: 'SET_VISIBILITY_FILTER',
-//     filter
-//   });
-// };
 
 const addItem = (name, category, status, manufacturer, location) => {
   store.dispatch({
