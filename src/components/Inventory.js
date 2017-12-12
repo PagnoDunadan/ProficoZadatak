@@ -31,8 +31,8 @@ class Inventory extends Component {
     super();
     this.state = { items: [] };
   }
-  render() {
-    store.subscribe(() => {
+  componentWillMount() {
+    this.unsubscribe = store.subscribe(() => {
       this.setState({
         items: store.getState().items.filter(
           item => item.name.toLowerCase().includes(
@@ -41,8 +41,13 @@ class Inventory extends Component {
         )
       });
     });
+  }
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+  render() {
     return (
-      <div id="contentWrapper" className="clearfix">
+      <div id="inventoryWrapper" className="clearfix">
         <Search setSearchString={setSearchString} />
 
         <ItemsList items={this.state.items} />
