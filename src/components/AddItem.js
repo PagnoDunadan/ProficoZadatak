@@ -1,5 +1,24 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './AddItem.css';
+
+let nextItemId = 0;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addItem: (name, category, status, manufacturer, location) => {
+      dispatch({
+        type: 'ADD_ITEM',
+        id: nextItemId++,
+        name,
+        category,
+        status,
+        manufacturer,
+        location
+      })
+    }
+  };
+};
 
 class AddItem extends Component {
   constructor() {
@@ -107,4 +126,7 @@ class AddItem extends Component {
   }
 }
   
-export default AddItem;
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddItem);

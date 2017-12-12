@@ -1,58 +1,18 @@
 import React, { Component } from 'react';
 import './Inventory.css';
-import store from '../redux/Store.js';
 import Search from './Search.js';
 import ItemsList from './ItemsList.js';
 import AddItem from './AddItem.js';
 
-let nextItemId = 0;
-
-const setSearchString = (searchString) => {
-  store.dispatch({
-    type: 'SET_SEARCH_STRING',
-    searchString
-  });
-};
-
-const addItem = (name, category, status, manufacturer, location) => {
-  store.dispatch({
-    type: 'ADD_ITEM',
-    id: nextItemId++,
-    name,
-    category,
-    status,
-    manufacturer,
-    location
-  });
-};
-
 class Inventory extends Component {
-  constructor() {
-    super();
-    this.state = { items: [] };
-  }
-  componentWillMount() {
-    this.unsubscribe = store.subscribe(() => {
-      this.setState({
-        items: store.getState().items.filter(
-          item => item.name.toLowerCase().includes(
-            store.getState().searchString.toLowerCase()
-          )
-        )
-      });
-    });
-  }
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
   render() {
     return (
       <div id="inventoryWrapper" className="clearfix">
-        <Search setSearchString={setSearchString} />
+        <Search />
 
-        <ItemsList items={this.state.items} />
+        <ItemsList />
         
-        <AddItem addItem={addItem} />
+        <AddItem />
       </div>
     );
   }

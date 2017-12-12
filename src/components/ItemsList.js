@@ -1,5 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './ItemsList.css';
+
+const mapStateToProps = (state) => {
+  return {
+    items: state.items.filter(
+      item => item.name.toLowerCase().includes(
+        state.searchString.trim().toLowerCase()
+      )
+    )
+  };
+};
 
 class ItemsList extends Component {
   render() {
@@ -34,4 +45,7 @@ class ItemsList extends Component {
   }
 }
 
-export default ItemsList;
+export default connect(
+  mapStateToProps,
+  null
+)(ItemsList);
