@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './AddItem.css';
 
-let nextItemId = 0;
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    addItem: (name, category, status, manufacturer, location) => {
+    addItem: (id, name, category, status, manufacturer, location) => {
       dispatch({
         type: 'ADD_ITEM',
-        id: nextItemId++,
+        id,
         name,
         category,
         status,
@@ -61,14 +59,33 @@ class AddItem extends Component {
       return;
     }
 
-    this.props.addItem(
-      this.state.name,
-      this.state.category,
-      this.state.status,
-      this.state.manufacturer,
-      this.state.location,
-    );
-    this.handleCancel();
+    fetch('http://192.168.1.10:3001/items', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: this.state.name,
+        category: this.state.category,
+        status: this.state.status,
+        manufacturer: this.state.manufacturer,
+        location: this.state.location
+      })
+    })
+    .then(res => res.json())
+    .then(id => {
+      console.log(this.state.name)
+      this.props.addItem(
+        id,
+        this.state.name,
+        this.state.category,
+        this.state.status,
+        this.state.manufacturer,
+        this.state.location,
+      );
+      this.handleCancel();
+    })
   }
   render() {
     return (

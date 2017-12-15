@@ -38,12 +38,24 @@ class ItemsList extends Component {
       this.props.setItems(items)
     })
   }
+  deleteItemServer(item) {
+    fetch('http://192.168.1.10:3001/items/' + item.id, {
+      method: 'delete'
+    })
+    .then(res => {
+      if (res.status === 200) {
+        this.props.deleteItem(item);
+      } else {
+        console.log(res);
+      }
+    })
+  }
   render() {
     let listItems = this.props.items.map((item) =>
       <div key={item.id} className="itemCard">
         
         <i className="fa fa-times-circle-o cardRemoveIcon"
-        onClick={() => this.props.deleteItem(item)} />
+        onClick={() => this.deleteItemServer(item)} />
 
         <img className="cardItemImage"
         src="https://i0.wp.com/orgulloso.es/wp-content/uploads/2017/04/santiago-bernabeu-589x393.jpg?resize=589%2C393"
