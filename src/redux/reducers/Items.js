@@ -1,4 +1,4 @@
-import item from './Item.js';
+import item from './item';
 
 export const itemsHasErrored = (state = false, action) => {
   switch (action.type) {
