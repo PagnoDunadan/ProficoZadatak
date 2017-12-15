@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './ItemsList.css';
 
 const mapStateToProps = (state) => {
+  console.log(state.items)
   return {
     items: state.items.filter(
       item => item.name.toLowerCase().includes(
@@ -12,11 +13,38 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setItems: (items) => {
+      dispatch({
+        type: 'SET_ITEMS',
+        items
+      })
+    },
+    deleteItem: (item) => {
+      dispatch({
+        type: 'DELETE_ITEM',
+        id: item.id
+      })
+    }
+  };
+};
+
 class ItemsList extends Component {
+  componentDidMount() {
+    fetch('http://192.168.1.10:3001/items')
+    .then(res => res.json())
+    .then(items => {
+      this.props.setItems(items)
+    })
+  }
   render() {
     let listItems = this.props.items.map((item) =>
       <div key={item.id} className="itemCard">
         
+        <i className="fa fa-times-circle-o cardRemoveIcon"
+        onClick={() => this.props.deleteItem(item)} />
+
         <img className="cardItemImage"
         src="https://i0.wp.com/orgulloso.es/wp-content/uploads/2017/04/santiago-bernabeu-589x393.jpg?resize=589%2C393"
         alt="ItemImage" />
@@ -47,5 +75,5 @@ class ItemsList extends Component {
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(ItemsList);

@@ -7,6 +7,14 @@ const items = (state = [], action) => {
         ...state,
         item(undefined, action)
       ];
+    case 'SET_ITEMS':
+      return [
+        ...action.items
+      ];
+    case 'DELETE_ITEM':
+      return [
+        ...state.filter((item) => item.id !== action.id)
+      ];
     default:
       return state;
   }
