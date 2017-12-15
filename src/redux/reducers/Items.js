@@ -1,15 +1,33 @@
 import item from './Item.js';
 
-const items = (state = [], action) => {
+export const itemsHasErrored = (state = false, action) => {
   switch (action.type) {
+    case 'ITEMS_HAS_ERRORED':
+      return action.hasErrored;
+    default:
+      return state;
+  }
+}
+
+export const itemsIsLoading = (state = false, action) => {
+  switch (action.type) {
+    case 'ITEMS_IS_LOADING':
+      return action.isLoading;
+    default:
+      return state;
+  }
+}
+
+export const items = (state = [], action) => {
+  switch (action.type) {
+    case 'ITEMS_FETCH_DATA_SUCCESS':
+      return [
+        ...action.items
+      ];
     case 'ADD_ITEM':
       return [
         ...state,
         item(undefined, action)
-      ];
-    case 'SET_ITEMS':
-      return [
-        ...action.items
       ];
     case 'DELETE_ITEM':
       return [
@@ -19,5 +37,3 @@ const items = (state = [], action) => {
       return state;
   }
 };
-
-export default items;

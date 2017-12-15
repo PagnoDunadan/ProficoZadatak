@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import fetchItemsData from '../actions/fetchItemsData';
 import './ItemsList.css';
 
 const mapStateToProps = (state) => {
-  console.log(state.items)
   return {
     items: state.items.filter(
       item => item.name.toLowerCase().includes(
         state.searchString.trim().toLowerCase()
       )
-    )
+    ),
+    hasErrored: state.itemsHasErrored,
+    isLoading: state.itemsIsLoading
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setItems: (items) => {
-      dispatch({
-        type: 'SET_ITEMS',
-        items
-      })
-    },
+    fetchItems: (url) => dispatch(fetchItemsData(url)),
     deleteItem: (item) => {
       dispatch({
         type: 'DELETE_ITEM',
@@ -32,11 +29,7 @@ const mapDispatchToProps = (dispatch) => {
 
 class ItemsList extends Component {
   componentDidMount() {
-    fetch('http://192.168.1.10:3001/items')
-    .then(res => res.json())
-    .then(items => {
-      this.props.setItems(items)
-    })
+    this.props.fetchItems('http://192.168.1.10:3001/items')
   }
   deleteItemServer(item) {
     fetch('http://192.168.1.10:3001/items/' + item.id, {
@@ -51,37 +44,47 @@ class ItemsList extends Component {
     })
   }
   render() {
-    let listItems = this.props.items.map((item) =>
-      <div key={item.id} className="itemCard">
-        
-        <i className="fa fa-times-circle-o cardRemoveIcon"
-        onClick={() => this.deleteItemServer(item)} />
+    if (this.props.hasErrored) {
+      return <p>Sorry! There was an error loading the items</p>;
+    }
 
-        <img className="cardItemImage"
-        src="https://i0.wp.com/orgulloso.es/wp-content/uploads/2017/04/santiago-bernabeu-589x393.jpg?resize=589%2C393"
-        alt="ItemImage" />
-        
-        <div className="cardItemContent">
-          <p className="cardItemName">
-            <b>{item.name}</b>
-          </p>
+    if (this.props.isLoading) {
+      return <p>Loading…</p>;
+    }
+
+    if (!this.props.hasErrored && !this.props.isLoading) {
+      let listItems = this.props.items.map((item) =>
+        <div key={item.id} className="itemCard">
           
-          <p className="cardItemStatus">
-            <span className={item.status.toLowerCase()}>{item.status}</span>
-          </p>
+          <i className="fa fa-times-circle-o cardRemoveIcon"
+          onClick={() => this.deleteItemServer(item)} />
 
-          <p className="cardItemLocation">
-            <i className="fa fa-map-marker" aria-hidden="true" />
-            <span> Room {item.location} </span>
-          </p>
+          <img className="cardItemImage"
+          src="https://i0.wp.com/orgulloso.es/wp-content/uploads/2017/04/santiago-bernabeu-589x393.jpg?resize=589%2C393"
+          alt="ItemImage" />
+          
+          <div className="cardItemContent">
+            <p className="cardItemName">
+              <b>{item.name}</b>
+            </p>
+            
+            <p className="cardItemStatus">
+              <span className={item.status.toLowerCase()}>{item.status}</span>
+            </p>
+
+            <p className="cardItemLocation">
+              <i className="fa fa-map-marker" aria-hidden="true" />
+              <span> Room {item.location} </span>
+            </p>
+          </div>
         </div>
-      </div>
-    );
-    return (
-      <div id="itemsWrapper" className="clearfix">
-        {listItems}
-      </div>
-    );
+      );
+      return (
+        <div id="itemsWrapper" className="clearfix">
+          {listItems}
+        </div>
+      );
+    }
   }
 }
 

@@ -1,11 +1,13 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import searchString from './reducers/SearchString.js';
-import items from './reducers/Items.js';
+import { items, itemsHasErrored, itemsIsLoading } from './reducers/Items.js';
 import thunk from "redux-thunk";
 
 const itemsApp = combineReducers({
   searchString,
-  items
+  items,
+  itemsHasErrored,
+  itemsIsLoading
 });
 
 const middleware = applyMiddleware(thunk)
