@@ -27,7 +27,7 @@ class AddItem extends Component {
       status: 'Broken',
       manufacturer: 'LG',
       location: '204',
-      showModal: false,
+      showModal: false
     };
   }
   handleChange(e) {
@@ -75,7 +75,6 @@ class AddItem extends Component {
     })
     .then(res => res.json())
     .then(id => {
-      console.log(this.state.name)
       this.props.addItem(
         id,
         this.state.name,

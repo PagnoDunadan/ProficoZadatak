@@ -1,13 +1,5 @@
 import item from './item';
 
-export const itemsHasErrored = (state = false, action) => {
-  switch (action.type) {
-    case 'ITEMS_HAS_ERRORED':
-      return action.hasErrored;
-    default:
-      return state;
-  }
-}
 
 export const itemsIsLoading = (state = false, action) => {
   switch (action.type) {
@@ -17,6 +9,35 @@ export const itemsIsLoading = (state = false, action) => {
       return state;
   }
 }
+
+export const itemsHasErrored = (state = false, action) => {
+  switch (action.type) {
+    case 'ITEMS_HAS_ERRORED':
+      return action.hasErrored;
+    default:
+      return state;
+  }
+}
+
+export const deleteIsLoading = (state = false, action) => {
+  switch (action.type) {
+    case 'DELETE_IS_LOADING':
+      return action.isLoading;
+    default:
+      return state;
+  }
+}
+
+export const deleteHasErrored = (state = false, action) => {
+  switch (action.type) {
+    case 'DELETE_HAS_ERRORED':
+      return action.hasErrored;
+    default:
+      return state;
+  }
+}
+
+
 
 export const items = (state = [], action) => {
   switch (action.type) {
@@ -29,9 +50,9 @@ export const items = (state = [], action) => {
         ...state,
         item(undefined, action)
       ];
-    case 'DELETE_ITEM':
+    case 'DELETE_ITEM_DATA_SUCCESS':
       return [
-        ...state.filter((item) => item.id !== action.id)
+        ...state.filter((item) => item.id !== action.item.id)
       ];
     default:
       return state;
