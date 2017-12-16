@@ -1,20 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import addItemData from '../actions/addItemData';
 import './AddItem.css';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addItem: (id, name, category, status, manufacturer, location) => {
-      dispatch({
-        type: 'ADD_ITEM',
-        id,
-        name,
-        category,
-        status,
-        manufacturer,
-        location
-      })
-    }
+    addItem: (item, url) => dispatch(addItemData(item, url))
   };
 };
 
@@ -59,32 +50,16 @@ class AddItem extends Component {
       return;
     }
 
-    fetch('http://192.168.1.10:3001/items', {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: this.state.name,
-        category: this.state.category,
-        status: this.state.status,
-        manufacturer: this.state.manufacturer,
-        location: this.state.location
-      })
+    let item = ({
+      name: this.state.name,
+      category: this.state.category,
+      status: this.state.status,
+      manufacturer: this.state.manufacturer,
+      location: this.state.location
     })
-    .then(res => res.json())
-    .then(id => {
-      this.props.addItem(
-        id,
-        this.state.name,
-        this.state.category,
-        this.state.status,
-        this.state.manufacturer,
-        this.state.location,
-      );
-      this.handleCancel();
-    })
+
+    this.props.addItem(item, 'http://192.168.1.10:3001/items')
+    this.handleCancel()
   }
   render() {
     return (

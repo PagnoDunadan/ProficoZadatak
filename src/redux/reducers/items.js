@@ -45,7 +45,7 @@ export const items = (state = [], action) => {
       return [
         ...action.items
       ];
-    case 'ADD_ITEM':
+    case 'ADD_ITEM_DATA_SUCCESS':
       return [
         ...state,
         item(undefined, action)

@@ -5,7 +5,6 @@ import deleteItemData from '../actions/deleteItemData';
 import './ItemsList.css';
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     items: state.items.filter(
       item => item.name.toLowerCase().includes(
