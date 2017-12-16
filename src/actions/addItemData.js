@@ -1,3 +1,5 @@
+import { API_URL } from '../config/config'
+
 const addHasErrored = (bool) => {
   return {
     type: 'ADD_HAS_ERRORED',
@@ -19,11 +21,11 @@ const addItemDataSuccess = (item) => {
   }
 }
 
-const addItemData = (item, url, reset) => {
+const addItemData = (item) => {
   return (dispatch) => {
     dispatch(addIsLoading(true))
 
-    fetch(url, {
+    fetch(API_URL, {
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -51,30 +53,3 @@ const addItemData = (item, url, reset) => {
 }
 
 export default addItemData
-
-// fetch('http://192.168.1.10:3001/items', {
-//   method: 'post',
-//   headers: {
-//     'Accept': 'application/json',
-//     'Content-Type': 'application/json',
-//   },
-//   body: JSON.stringify({
-//     name: this.state.name,
-//     category: this.state.category,
-//     status: this.state.status,
-//     manufacturer: this.state.manufacturer,
-//     location: this.state.location
-//   })
-// })
-// .then(res => res.json())
-// .then(id => {
-//   this.props.addItem(
-//     id,
-//     this.state.name,
-//     this.state.category,
-//     this.state.status,
-//     this.state.manufacturer,
-//     this.state.location,
-//   );
-//   this.handleCancel();
-// })

@@ -1,3 +1,5 @@
+import { API_URL } from '../config/config'
+
 const deleteHasErrored = (bool) => {
   return {
     type: 'DELETE_HAS_ERRORED',
@@ -19,11 +21,11 @@ const deleteItemDataSuccess = (item) => {
   }
 }
 
-const deleteItemData = (item, url) => {
+const deleteItemData = (item) => {
   return (dispatch) => {
     dispatch(deleteIsLoading(true))
 
-    fetch(url + '/' + item.id, {
+    fetch(API_URL + item.id, {
       method: 'delete'
     })
       .then((response) => {

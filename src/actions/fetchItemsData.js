@@ -1,3 +1,5 @@
+import { API_URL } from '../config/config'
+
 const itemsHasErrored = (bool) => {
   return {
       type: 'ITEMS_HAS_ERRORED',
@@ -19,11 +21,11 @@ const itemsFetchDataSuccess = (items) => {
   }
 }
 
-const fetchItemsData = (url) => {
+const fetchItemsData = () => {
   return (dispatch) => {
     dispatch(itemsIsLoading(true))
 
-    fetch(url)
+    fetch(API_URL)
       .then((response) => {
         if (!response.ok) {
           throw Error(response.statusText)

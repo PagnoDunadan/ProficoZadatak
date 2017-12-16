@@ -5,7 +5,7 @@ import './AddItem.css';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addItem: (item, url) => dispatch(addItemData(item, url))
+    addItem: (item) => dispatch(addItemData(item))
   };
 };
 
@@ -58,7 +58,7 @@ class AddItem extends Component {
       location: this.state.location
     })
 
-    this.props.addItem(item, 'http://192.168.1.10:3001/items')
+    this.props.addItem(item)
     this.handleCancel()
   }
   render() {

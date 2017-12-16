@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch) => {
 
 class ItemsList extends Component {
   componentDidMount() {
-    this.props.fetchItems('http://192.168.1.10:3001/items')
+    this.props.fetchItems()
   }
   render() {
     if (this.props.hasErrored) {
@@ -41,10 +41,7 @@ class ItemsList extends Component {
         <div key={item.id} className="itemCard">
           
           <i className="fa fa-times-circle-o cardRemoveIcon"
-          onClick={() => this.props.deleteItem(
-            item,
-            'http://192.168.1.10:3001/items'
-          )} />
+          onClick={() => this.props.deleteItem(item)} />
 
           <img className="cardItemImage"
           src="https://i0.wp.com/orgulloso.es/wp-content/uploads/2017/04/santiago-bernabeu-589x393.jpg?resize=589%2C393"
