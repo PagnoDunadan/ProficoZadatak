@@ -1,43 +1,43 @@
 import { API_URL } from '../config/config'
 
-const itemsHasErrored = (bool) => {
+const fetchItemsIsLoading = (bool) => {
   return {
-      type: 'ITEMS_HAS_ERRORED',
-      hasErrored: bool
-  }
-}
-
-const itemsIsLoading = (bool) => {
-  return {
-      type: 'ITEMS_IS_LOADING',
+      type: 'FETCH_ITEMS_IS_LOADING',
       isLoading: bool
   }
 }
 
-const itemsFetchDataSuccess = (items) => {
+const fetchItemsHasErrored = (bool) => {
   return {
-    type: 'ITEMS_FETCH_DATA_SUCCESS',
+      type: 'FETCH_ITEMS_HAS_ERRORED',
+      hasErrored: bool
+  }
+}
+
+const fetchItemsDataSuccess = (items) => {
+  return {
+    type: 'FETCH_ITEM_DATA_SUCCESS',
     items
   }
 }
 
 const fetchItemsData = () => {
   return (dispatch) => {
-    dispatch(itemsIsLoading(true))
+    dispatch(fetchItemsIsLoading(true))
 
     fetch(API_URL)
       .then((response) => {
         if (!response.ok) {
           throw Error(response.statusText)
         }
-        dispatch(itemsIsLoading(false))
+        dispatch(fetchItemsIsLoading(false))
         return response
       })
       .then((response) => response.json())
-      .then((items) => dispatch(itemsFetchDataSuccess(items)))
+      .then((items) => dispatch(fetchItemsDataSuccess(items)))
       .catch(() => {
-        dispatch(itemsHasErrored(true))
-        dispatch(itemsIsLoading(false))
+        dispatch(fetchItemsHasErrored(true))
+        dispatch(fetchItemsIsLoading(false))
       })
   }
 }

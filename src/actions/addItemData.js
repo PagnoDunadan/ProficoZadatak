@@ -1,16 +1,16 @@
 import { API_URL } from '../config/config'
 
-const addHasErrored = (bool) => {
+const addItemIsLoading = (bool) => {
   return {
-    type: 'ADD_HAS_ERRORED',
-    hasErrored: bool
+    type: 'ADD_ITEM_IS_LOADING',
+    isLoading: bool
   }
 }
 
-const addIsLoading = (bool) => {
+const addItemHasErrored = (bool) => {
   return {
-    type: 'ADD_IS_LOADING',
-    isLoading: bool
+    type: 'ADD_ITEM_HAS_ERRORED',
+    hasErrored: bool
   }
 }
 
@@ -23,7 +23,7 @@ const addItemDataSuccess = (item) => {
 
 const addItemData = (item) => {
   return (dispatch) => {
-    dispatch(addIsLoading(true))
+    dispatch(addItemIsLoading(true))
 
     fetch(API_URL, {
       method: 'post',
@@ -37,7 +37,7 @@ const addItemData = (item) => {
       if (!response.ok) {
         throw Error(response.statusText)
       }
-      dispatch(addIsLoading(false))
+      dispatch(addItemIsLoading(false))
       return response
     })
     .then((response) => response.json())
@@ -46,8 +46,8 @@ const addItemData = (item) => {
       dispatch(addItemDataSuccess(item))
     })
     .catch(() => {
-      dispatch(addHasErrored(true))
-      dispatch(addIsLoading(false))
+      dispatch(addItemHasErrored(true))
+      dispatch(addItemIsLoading(false))
     })
   }
 }

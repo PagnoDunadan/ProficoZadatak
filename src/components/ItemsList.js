@@ -1,42 +1,46 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import fetchItemsData from '../actions/fetchItemsData';
-import deleteItemData from '../actions/deleteItemData';
-import './ItemsList.css';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import fetchItemsData from '../actions/fetchItemsData'
+import deleteItemData from '../actions/deleteItemData'
+import './ItemsList.css'
 
 const mapStateToProps = (state) => {
+  console.log(state)
+  console.log('fix')
   return {
     items: state.items.filter(
       item => item.name.toLowerCase().includes(
         state.searchString.trim().toLowerCase()
       )
     ),
-    hasErrored: state.itemsHasErrored,
-    isLoading: state.itemsIsLoading
-  };
-};
+    fetchItemsIsLoading: state.fetchItemsIsLoading,
+    fetchItemsHasErrored: state.fetchItemsHasErrored,
+    deleteItemIsLoading: state.deleteItemIsLoading,
+    deleteItemHasErrored: state.deleteItemHasErrored
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchItems: (url) => dispatch(fetchItemsData(url)),
-    deleteItem: (item, url) => dispatch(deleteItemData(item, url))
-  };
-};
+    fetchItems: () => dispatch(fetchItemsData()),
+    deleteItem: (item) => dispatch(deleteItemData(item))
+  }
+}
 
 class ItemsList extends Component {
   componentDidMount() {
     this.props.fetchItems()
   }
   render() {
-    if (this.props.hasErrored) {
-      return <p>Sorry! There was an error loading the items</p>;
+    if (this.props.fetchItemsHasErrored) {
+      return <p>Sorry! There was an error loading the items</p>
     }
 
-    if (this.props.isLoading) {
-      return <p>Loading…</p>;
+    if (this.props.fetchItemsIsLoading) {
+      return <p>Loading…</p>
     }
 
-    if (!this.props.hasErrored && !this.props.isLoading) {
+    if (!this.props.fetchItemsHasErrored && !this.props.fetchItemsIsLoading) {
       let listItems = this.props.items.map((item) =>
         <div key={item.id} className="itemCard">
           
@@ -62,12 +66,12 @@ class ItemsList extends Component {
             </p>
           </div>
         </div>
-      );
+      )
       return (
         <div id="itemsWrapper" className="clearfix">
           {listItems}
         </div>
-      );
+      )
     }
   }
 }
@@ -75,4 +79,4 @@ class ItemsList extends Component {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ItemsList);
+)(ItemsList)

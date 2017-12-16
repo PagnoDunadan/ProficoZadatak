@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import './Search.css';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import './Search.css'
 
 const mapStateToProps = (state) => {
   return {
     searchString: state.searchString
-  };
-};
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -16,8 +16,8 @@ const mapDispatchToProps = (dispatch) => {
         searchString
       })
     }
-  };
-};
+  }
+}
 
 class Search extends Component {
   render() {
@@ -28,11 +28,11 @@ class Search extends Component {
         onChange={(e) => this.props.setSearchString(e.target.value)} />
         <i className="fa fa-search" aria-hidden="true" />
       </div>
-    );
+    )
   }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Search);
+)(Search)

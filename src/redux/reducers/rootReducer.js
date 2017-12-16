@@ -1,19 +1,23 @@
-import { combineReducers } from 'redux';
-import searchString from './searchString';
+import { combineReducers } from 'redux'
+import searchString from './searchString'
 import { items,
-  itemsHasErrored,
-  itemsIsLoading,
-  deleteHasErrored,
-  deleteIsLoading
-} from './items';
+  fetchItemsIsLoading,
+  fetchItemsHasErrored,
+  addItemIsLoading,
+  addItemHasErrored,
+  deleteItemIsLoading,
+  deleteItemHasErrored
+} from './items'
 
 const rootReducer = combineReducers({
   searchString,
   items,
-  itemsHasErrored,
-  itemsIsLoading,
-  deleteHasErrored,
-  deleteIsLoading
-});
+  fetchItemsIsLoading,
+  fetchItemsHasErrored,
+  addItemIsLoading,
+  addItemHasErrored,
+  deleteItemIsLoading,
+  deleteItemHasErrored
+})
 
-export default rootReducer;
+export default rootReducer

@@ -1,16 +1,16 @@
 import { API_URL } from '../config/config'
 
-const deleteHasErrored = (bool) => {
+const deleteItemIsLoading = (bool) => {
   return {
-    type: 'DELETE_HAS_ERRORED',
-    hasErrored: bool
+    type: 'DELETE_ITEM_IS_LOADING',
+    isLoading: bool
   }
 }
 
-const deleteIsLoading = (bool) => {
+const deleteItemHasErrored = (bool) => {
   return {
-    type: 'DELETE_IS_LOADING',
-    isLoading: bool
+    type: 'DELETE_ITEM_HAS_ERRORED',
+    hasErrored: bool
   }
 }
 
@@ -23,7 +23,7 @@ const deleteItemDataSuccess = (item) => {
 
 const deleteItemData = (item) => {
   return (dispatch) => {
-    dispatch(deleteIsLoading(true))
+    dispatch(deleteItemIsLoading(true))
 
     fetch(API_URL + item.id, {
       method: 'delete'
@@ -32,12 +32,12 @@ const deleteItemData = (item) => {
         if (!response.ok) {
           throw Error(response.statusText)
         }
-        dispatch(deleteIsLoading(false))
+        dispatch(deleteItemIsLoading(false))
         dispatch(deleteItemDataSuccess(item))
       })
       .catch(() => {
-        dispatch(deleteHasErrored(true))
-        dispatch(deleteIsLoading(false))
+        dispatch(deleteItemHasErrored(true))
+        dispatch(deleteItemIsLoading(false))
       })
   }
 }

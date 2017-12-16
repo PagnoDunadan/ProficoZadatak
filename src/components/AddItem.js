@@ -1,17 +1,24 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import addItemData from '../actions/addItemData';
-import './AddItem.css';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import addItemData from '../actions/addItemData'
+import './AddItem.css'
+
+const mapStateToProps = (state) => {
+  return {
+    addItemIsLoading: state.addItemIsLoading,
+    addItemHasErrored: state.addItemHasErrored
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addItem: (item) => dispatch(addItemData(item))
-  };
-};
+  }
+}
 
 class AddItem extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
       name: 'Big screen TV',
       category: 'Tech',
@@ -19,7 +26,7 @@ class AddItem extends Component {
       manufacturer: 'LG',
       location: '204',
       showModal: false
-    };
+    }
   }
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value })
@@ -35,19 +42,19 @@ class AddItem extends Component {
     })
   }
   handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
 
-    let missing = '';
+    let missing = ''
     
-    if (this.state.name === '') missing += ' Name ';
-    if (this.state.category === '') missing += ' Category ';
-    if (this.state.status === '') missing += ' Status ';
-    if (this.state.manufacturer === '') missing += ' Manufacturer ';
-    if (this.state.location === '') missing += ' Location ';
+    if (this.state.name === '') missing += ' Name '
+    if (this.state.category === '') missing += ' Category '
+    if (this.state.status === '') missing += ' Status '
+    if (this.state.manufacturer === '') missing += ' Manufacturer '
+    if (this.state.location === '') missing += ' Location '
 
     if (missing !== '') {
-      alert("Missing required fields: " + missing);
-      return;
+      alert("Missing required fields: " + missing)
+      return
     }
 
     let item = ({
@@ -113,11 +120,11 @@ class AddItem extends Component {
         'addItemModalBackdrop' : 'displayNone'}
         onClick={() => this.handleCancel()} />
       </div>
-    );
+    )
   }
 }
   
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
-)(AddItem);
+)(AddItem)

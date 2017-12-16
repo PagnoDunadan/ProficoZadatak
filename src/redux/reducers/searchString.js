@@ -1,10 +1,10 @@
 const searchString = (state = '', action) => {
   switch (action.type) {
     case 'SET_SEARCH_STRING':
-      return action.searchString;
+      return action.searchString
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default searchString;
+export default searchString

@@ -9,10 +9,10 @@ const item = (state, action) => {
         manufacturer: action.item.manufacturer,
         location: action.item.location,
         selected: false
-      };
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default item;
+export default item

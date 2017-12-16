@@ -1,60 +1,75 @@
-import item from './item';
+import item from './item'
 
-
-export const itemsIsLoading = (state = false, action) => {
+export const fetchItemsIsLoading = (state = false, action) => {
   switch (action.type) {
-    case 'ITEMS_IS_LOADING':
-      return action.isLoading;
+    case 'FETCH_ITEMS_IS_LOADING':
+      return action.isLoading
     default:
-      return state;
+      return state
   }
 }
 
-export const itemsHasErrored = (state = false, action) => {
+export const fetchItemsHasErrored = (state = false, action) => {
   switch (action.type) {
-    case 'ITEMS_HAS_ERRORED':
-      return action.hasErrored;
+    case 'FETCH_ITEMS_HAS_ERRORED':
+      return action.hasErrored
     default:
-      return state;
+      return state
   }
 }
 
-export const deleteIsLoading = (state = false, action) => {
+export const addItemIsLoading = (state = false, action) => {
   switch (action.type) {
-    case 'DELETE_IS_LOADING':
-      return action.isLoading;
+    case 'ADD_ITEM_IS_LOADING':
+      return action.isLoading
     default:
-      return state;
+      return state
   }
 }
 
-export const deleteHasErrored = (state = false, action) => {
+export const addItemHasErrored = (state = false, action) => {
   switch (action.type) {
-    case 'DELETE_HAS_ERRORED':
-      return action.hasErrored;
+    case 'ADD_ITEM_HAS_ERRORED':
+      return action.hasErrored
     default:
-      return state;
+      return state
   }
 }
 
+export const deleteItemIsLoading = (state = false, action) => {
+  switch (action.type) {
+    case 'DELETE_ITEM_IS_LOADING':
+      return action.isLoading
+    default:
+      return state
+  }
+}
 
+export const deleteItemHasErrored = (state = false, action) => {
+  switch (action.type) {
+    case 'DELETE_ITEM_HAS_ERRORED':
+      return action.hasErrored
+    default:
+      return state
+  }
+}
 
 export const items = (state = [], action) => {
   switch (action.type) {
-    case 'ITEMS_FETCH_DATA_SUCCESS':
+    case 'FETCH_ITEM_DATA_SUCCESS':
       return [
         ...action.items
-      ];
+      ]
     case 'ADD_ITEM_DATA_SUCCESS':
       return [
         ...state,
         item(undefined, action)
-      ];
+      ]
     case 'DELETE_ITEM_DATA_SUCCESS':
       return [
         ...state.filter((item) => item.id !== action.item.id)
-      ];
+      ]
     default:
-      return state;
+      return state
   }
-};
+}

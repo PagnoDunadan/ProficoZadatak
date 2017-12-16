@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import './Inventory.css';
-import Search from './Search.js';
-import ItemsList from './ItemsList.js';
-import AddItem from './AddItem.js';
+import React, { Component } from 'react'
+import './Inventory.css'
+import Search from './Search.js'
+import ItemsList from './ItemsList.js'
+import AddItem from './AddItem.js'
 
 class Inventory extends Component {
   render() {
@@ -14,8 +14,8 @@ class Inventory extends Component {
         
         <AddItem />
       </div>
-    );
+    )
   }
 }
 
-export default Inventory;
+export default Inventory
