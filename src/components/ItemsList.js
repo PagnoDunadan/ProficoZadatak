@@ -5,8 +5,6 @@ import deleteItemData from '../actions/deleteItemData'
 import './ItemsList.css'
 
 const mapStateToProps = (state) => {
-  console.log(state)
-  console.log('fix')
   return {
     items: state.items.filter(
       item => item.name.toLowerCase().includes(
@@ -14,9 +12,7 @@ const mapStateToProps = (state) => {
       )
     ),
     fetchItemsIsLoading: state.fetchItemsIsLoading,
-    fetchItemsHasErrored: state.fetchItemsHasErrored,
-    deleteItemIsLoading: state.deleteItemIsLoading,
-    deleteItemHasErrored: state.deleteItemHasErrored
+    fetchItemsHasErrored: state.fetchItemsHasErrored
   }
 }
 
@@ -32,15 +28,11 @@ class ItemsList extends Component {
     this.props.fetchItems()
   }
   render() {
-    if (this.props.fetchItemsHasErrored) {
-      return <p>Sorry! There was an error loading the items</p>
+    if (this.props.fetchItemsIsLoading || this.props.fetchItemsHasErrored) {
+      return null
     }
 
-    if (this.props.fetchItemsIsLoading) {
-      return <p>Loading…</p>
-    }
-
-    if (!this.props.fetchItemsHasErrored && !this.props.fetchItemsIsLoading) {
+    if (!this.props.fetchItemsIsLoading && !this.props.fetchItemsHasErrored) {
       let listItems = this.props.items.map((item) =>
         <div key={item.id} className="itemCard">
           

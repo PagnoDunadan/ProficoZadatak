@@ -3,13 +3,6 @@ import { connect } from 'react-redux'
 import addItemData from '../actions/addItemData'
 import './AddItem.css'
 
-const mapStateToProps = (state) => {
-  return {
-    addItemIsLoading: state.addItemIsLoading,
-    addItemHasErrored: state.addItemHasErrored
-  }
-}
-
 const mapDispatchToProps = (dispatch) => {
   return {
     addItem: (item) => dispatch(addItemData(item))
@@ -125,6 +118,6 @@ class AddItem extends Component {
 }
   
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(AddItem)

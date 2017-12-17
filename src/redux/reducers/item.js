@@ -7,8 +7,7 @@ const item = (state, action) => {
         category: action.item.category,
         status: action.item.status,
         manufacturer: action.item.manufacturer,
-        location: action.item.location,
-        selected: false
+        location: action.item.location
       }
     default:
       return state

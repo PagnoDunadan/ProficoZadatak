@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import './Inventory.css'
-import Search from './Search.js'
-import ItemsList from './ItemsList.js'
-import AddItem from './AddItem.js'
+import Search from './Search'
+import ItemsList from './ItemsList'
+import AddItem from './AddItem'
 
 class Inventory extends Component {
   render() {
